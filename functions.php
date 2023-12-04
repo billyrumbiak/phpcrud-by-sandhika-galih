@@ -21,7 +21,7 @@ function tambah($data) {
     $npm = htmlspecialchars($data["npm"]);
     $email = htmlspecialchars($data["email"]);
     $jurusan = htmlspecialchars($data["jurusan"]);
-    
+
     // upload gambar
     $gambar = upload();
     if ( !$gambar ) {
@@ -35,19 +35,18 @@ function tambah($data) {
     return mysqli_affected_rows($conn);
 }
 
-// cek apakah ada gambar yang diupload
 function upload() {
-
+    
     $namaFile = $_FILES['gambar']['name'];
     $ukuranFile = $_FILES['gambar']['size'];
     $error = $_FILES['gambar']['error'];
-    $tmpName = $_FILES['gambar']['error'];
+    $tmpName = $_FILES['gambar']['tmp_name'];
 
-    // cek apakah tidak ada gambar yang diupload
-    if ( $error === 4 ) {
-        echo"<script>
-            alert('Silahkan masukkan foto');
-        </script>";
+    // cek apakah tidak ada gambar yang di upload
+    if( $error === 4 ) {
+        echo "<script>
+                alert('silahkan masukkan gambar');      
+            </script>";
         return false;
     }
 
@@ -56,22 +55,22 @@ function upload() {
     $ekstensiGambar = explode('.', $namaFile);
     $ekstensiGambar = strtolower(end($ekstensiGambar));
     if ( !in_array($ekstensiGambar, $ekstensiGambarValid) ) {
-        echo"<script>
-            alert('Upload gambar');
-        </script>";
+        echo "<script>
+                alert('Yang anda upload bukan gambar');      
+            </script>";
         return false;
     }
 
-    // cek jika ukurannya terlalu besar
-    if ($ukuranFile > 1000000) {
-        echo"<script>
-            alert('Ukuran gambar besar');
-        </script>";
+    // cek jika ukuran gambar terlalu besar
+    if ( $ukuranFile > 1000000 ) {
+        echo "<script>
+                alert('Ukuran gambar terlalu besar');      
+            </script>";
         return false;
     }
 
     // lolos pengecekan, gambar siap diupload
-    // menghasilkan nama gambar baru
+    // generate nama gambar baru
     $namaFileBaru = uniqid();
     $namaFileBaru .= '.';
     $namaFileBaru .= $ekstensiGambar;
@@ -79,7 +78,6 @@ function upload() {
     move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
 
     return $namaFileBaru;
-
 }
 
 function hapus($id) {
@@ -106,8 +104,6 @@ function ubah($data) {
         $gambar = upload();
     }
 
-    $gambar = htmlspecialchars($data["gambar"]);
-
     // query insert data
     $query = "UPDATE mahasiswa SET
                     nama = '$nama',
@@ -130,4 +126,41 @@ function cari($keyword) {
                         jurusan LIKE '%$keyword%'";
 
     return query($query);
+}
+
+function registrasi($data) {
+    global $conn;
+
+    $username = strtolower(stripslashes($data["username"]));
+    $password = mysqli_real_escape_string($conn, $data["password"]);
+    $password2 = mysqli_real_escape_string($conn, $data["password2"]);
+
+    // cek username sudah ada atau belum
+    $result = mysqli_query($conn, "SELECT username FROM users WHERE username = '$username'");
+
+    if( mysqli_fetch_assoc($result) ) {
+        echo"<script>
+                alert('Username sudah terdaftar!');
+            </script>";
+            return false;
+    }
+
+    // cek apakah password sesuai atau tidak
+    if ( $password !== $password2 ) {
+        echo "<script>
+                alert('Password tidak sesuai!');
+            </script>";
+
+            return false;
+    }
+
+    // enkripsi password
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    // tambahkan userbaru ke database
+    mysqli_query($conn, "INSERT INTO users VALUES('', '$username', '$password')");
+
+    return mysqli_affected_rows($conn);
+
+
 }

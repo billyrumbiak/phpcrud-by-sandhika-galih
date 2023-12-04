@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if( !isset($_SESSION["login"]) ) {
+    header("Location: login.php");
+    exit;
+}
+
 // ambil data di file functions.php
 require 'functions.php';
 
@@ -11,59 +18,64 @@ if ( isset($_POST["cari"]) ) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Admin</title>
 </head>
+
 <body>
 
-<h1>Daftar Mahasiswa</h1>
+    <a href="logout.php">Logout</a>
 
-<a href="tambah.php">Tambah Data Mahasiswa</a>
-<br><br>
+    <h1>Daftar Mahasiswa</h1>
 
-<table border="1" cellpadding="10" cellspacing="0">
-
-    <tr>
-        <th>No.</th>
-        <th>Aksi</th>
-        <th>Gambar</th>
-        <th>NPM</th>
-        <th>Nama</th>
-        <th>Email</th>
-        <th>Jurusan</th>
-    </tr>
-
-<!-- autofocus adalah atirbut untuk memunculkan krusor secara otomatis -->
-<!-- autocomplete adalah atirbut untuk menghilangkan history pada pencarian -->
-
-    <form action="" method="post">
-
-        <input type="text" name="keyword" autofocus placeholder="Cari" autocomplete="off"> 
-        <button typep="submit" name="cari">Cari!</button>
-
-    </form>
+    <a href="tambah.php">Tambah Data Mahasiswa</a>
     <br><br>
 
-    <?php $i = 1; ?>
-    <?php foreach( $mahasiswa as $row) : ?>
-    <tr>
-        <td><?= $i ?></td>
-        <td>
-            <a href="ubah.php?id=<?= $row["id"]; ?>">Ubah</a> |
-            <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?')">Hapus</a>
-        </td>
-        <td><img src="img/<?= $row["gambar"]; ?>" width="100px"></td>
-        <td><?= $row["npm"]; ?></td>
-        <td><?= $row["nama"]; ?></td>
-        <td><?= $row["email"]; ?></td>
-        <td><?= $row["jurusan"]; ?></td>
-    </tr>
-    <?php $i++ ?>
-    <?php endforeach; ?>
+    <table border="1" cellpadding="10" cellspacing="0">
 
-</table>
+        <tr>
+            <th>No.</th>
+            <th>Aksi</th>
+            <th>Gambar</th>
+            <th>NPM</th>
+            <th>Nama</th>
+            <th>Email</th>
+            <th>Jurusan</th>
+        </tr>
+
+        <!-- autofocus adalah atirbut untuk memunculkan krusor secara otomatis -->
+        <!-- autocomplete adalah atirbut untuk menghilangkan history pada pencarian -->
+
+        <form action="" method="post">
+
+            <input type="text" name="keyword" autofocus placeholder="Cari" autocomplete="off">
+            <button typep="submit" name="cari">Cari!</button>
+
+        </form>
+        <br><br>
+
+        <?php $i = 1; ?>
+        <?php foreach( $mahasiswa as $row) : ?>
+        <tr>
+            <td><?= $i ?></td>
+            <td>
+                <a href="ubah.php?id=<?= $row["id"]; ?>">Ubah</a> |
+                <a href="hapus.php?id=<?= $row["id"]; ?>" onclick="return confirm('yakin?')">Hapus</a>
+            </td>
+            <td><img src="img/<?= $row["gambar"]; ?>" width="100px"></td>
+            <td><?= $row["npm"]; ?></td>
+            <td><?= $row["nama"]; ?></td>
+            <td><?= $row["email"]; ?></td>
+            <td><?= $row["jurusan"]; ?></td>
+        </tr>
+        <?php $i++ ?>
+        <?php endforeach; ?>
+
+    </table>
 
 </body>
+
 </html>
