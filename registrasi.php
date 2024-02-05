@@ -28,16 +28,19 @@ if ( isset($_POST["registrasi"]) ) {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body>
+<body class="m-5">
 
-    <main class="container">
+    <main class="container p-5">
 
-        <h1 class="text-center fw-bold">Registrasi</h1>
+        <h1 class="text-center fw-bold m-5">Registrasi</h1>
 
         <div class="row d-flex justify-content-center">
-            <form action="" method="post" class="col-4">
+            <form action="" method="post" class="col-4 m-2">
 
                 <ul class="list-group">
                     <li class="list-group-item">
@@ -55,6 +58,7 @@ if ( isset($_POST["registrasi"]) ) {
                     </li>
                     <li class="list-group-item">
                         <button type="submit" name="registrasi" class="btn btn-primary">Registrasi!</button>
+                        <a href="login.php" type="submit" class="btn btn-primary">Login</a>
                     </li>
                 </ul>
 
@@ -63,9 +67,6 @@ if ( isset($_POST["registrasi"]) ) {
 
 
     </main>
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
