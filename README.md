@@ -2,4 +2,4 @@
 
 ## Aplikasi
 
-<img scr="pertemuan17.png">
+<img src="pertemuan17.png">
