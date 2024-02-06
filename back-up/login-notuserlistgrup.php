@@ -71,12 +71,11 @@ if( isset($_SESSION["login"]) ) {
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="m-5">
+<body>
 
-    <div class="container p-5">
-        <form action="" method="post" class="p-5"
-            style="background-image: url(https://sacode.web.id/assets/img/logo/logo-sacode-meta.jpg); background-repeat: no-repeat; background-position: center; border-radius: 100%;">
-            <h1 class="text-center py-3"><i class="fa-solid fa-right-to-bracket"></i> Halaman Login</h1>
+    <div class="container my-5 py-5">
+        <form action="" method="post" class="form-control bg-info my-5">
+            <h1 class="text-center py-3 text-white"><i class="fa-solid fa-right-to-bracket"></i> Halaman Login</h1>
             <?php if(isset ($error) ) : ?>
             <p>Username - Password salah!</p>
             <?php endif ; ?>
@@ -96,19 +95,19 @@ if( isset($_SESSION["login"]) ) {
                 </div>
                 <div class="col-4 p-2">
                     <li class="d-grid">
-                        <button type="submit" name="login" class="btn btn-outline-primary"><i
+                        <button type="submit" name="login" class="btn btn-primary"><i
                                 class="fa-solid fa-right-to-bracket"></i> Login</button>
                     </li>
                 </div>
                 <div class="col-4 p-2">
-                    <li class="form-check">
+                    <li class="form-check text-white">
                         <input type="checkbox" name="remember" id="remember" class="form-check-input">
-                        <label for="remember" class="text-white">Remember Me</label>
+                        <label for="remember">Remember Me</label>
                     </li>
                 </div>
                 <div class="col-4 p-2">
                     <li class="d-grid">
-                        <a href="registrasi.php" class="btn btn-outline-light"><i class="fa-solid fa-plus"></i>
+                        <a href="registrasi.php" class="btn btn-secondary"><i class="fa-solid fa-plus"></i>
                             Registrasi</a>
                     </li>
                 </div>

@@ -31,42 +31,55 @@ if ( isset($_POST["registrasi"]) ) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 
 <body class="m-5">
 
-    <main class="container p-5">
+    <div class="container p-5">
 
-        <h1 class="text-center fw-bold m-5">Registrasi</h1>
+        <form action="" method="post" class="p-5"
+            style="background-image: url(https://sacode.web.id/assets/img/logo/logo-sacode-meta.jpg); background-repeat: no-repeat; background-position: center; border-radius: 100%;">
+            <h1 class="text-center fw-bold text-light">Registrasi</h1>
 
-        <div class="row d-flex justify-content-center">
-            <form action="" method="post" class="col-4 m-2">
-
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <label for="username">Username :</label>
-                        <input type="text" name="username" id="username" class="form-control">
+            <ul class="list-inline d-flex align-items-center flex-column">
+                <div class="col-4 p-2">
+                    <li class="form-floating">
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Nama ID">
+                        <label for="username">Nama ID</label>
                     </li>
+                </div>
 
-                    <li class="list-group-item">
-                        <label for="password">Password :</label>
-                        <input type="password" name="password" id="password" class="form-control">
+                <div class="col-4 p-2">
+                    <li class="form-floating">
+                        <input type="password" name="password" id="password" class="form-control"
+                            placeholder="Password">
+                        <label for="password">Password</label>
                     </li>
-                    <li class="list-group-item">
-                        <label for="password2">Konfirmasi Password :</label>
-                        <input type="password" name="password2" id="password2" class="form-control">
+                </div>
+
+                <div class="col-4 p-2">
+                    <li class="form-floating">
+                        <input type="password" name="password2" id="password2" class="form-control"
+                            placeholder="Konfirmasi Password">
+                        <label for="password2">Konfirmasi Password</label>
                     </li>
-                    <li class="list-group-item">
-                        <button type="submit" name="registrasi" class="btn btn-primary">Registrasi!</button>
-                        <a href="login.php" type="submit" class="btn btn-primary">Login</a>
+                </div>
+
+                <div class="col-4 p-2">
+                    <li class="form-floating">
+                        <button type="submit" name="registrasi" class="btn btn-outline-light"><i
+                                class="fa-solid fa-plus"></i> Tambah</button>
+                        <a href="login.php" type="submit" class="btn btn-outline-light ms-2"><i
+                                class="fa-solid fa-right-to-bracket"></i> Masuk</a>
                     </li>
-                </ul>
+                </div>
+            </ul>
 
-            </form>
-        </div>
+        </form>
 
 
-    </main>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
